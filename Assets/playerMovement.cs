@@ -33,7 +33,7 @@ public class playerMovement : MonoBehaviour {
         
         if (Input.GetKeyDown("w") && transform.position.y <= startYpos)
         {
-            rb.AddForce(new Vector2(0f, jump), ForceMode2D.Impulse);
+            rb.velocity = new Vector3(0f, jump * Time.deltaTime, 0f);
         }
         
         if (Input.GetKeyDown("1"))

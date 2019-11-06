@@ -16,7 +16,7 @@ public class playerMovement : MonoBehaviour {
     private float startYpos;
 
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();
+        rb = transform.GetComponent<Rigidbody2D>();
         
         startYpos = transform.position.y;
 
@@ -26,16 +26,16 @@ public class playerMovement : MonoBehaviour {
 	}
 	
 
-	void Update () 
+	void FixedUpdate () 
     {
         float h = Input.GetAxisRaw("Horizontal");
         rb.velocity = Vector2.right * h * moveSpeed;
         
         if (Input.GetKeyDown("w") && transform.position.y <= startYpos)
         {
-            rb.velocity = new Vector3(0f, jump * Time.deltaTime, 0f);
+            rb.velocity = Vector2.up * jump;
         }
-        
+
         if (Input.GetKeyDown("1"))
         {
             weapon1.GetComponent<SpriteRenderer>().enabled = true;

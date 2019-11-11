@@ -33,9 +33,14 @@ public class Player : MonoBehaviour {
 
     private void Update() {
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
-            rb.velocity = Vector2.up * jumpVelocity;
+            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
         }
-        HandleMovement_FullMidAirControl();
+        
+        if (rb.velocity.y == 0)
+        {
+            HandleMovement_FullMidAirControl();
+        }
+        
 
         if(rb.velocity.y > 0)
         {

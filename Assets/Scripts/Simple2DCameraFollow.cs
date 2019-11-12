@@ -10,10 +10,12 @@ public class Simple2DCameraFollow : MonoBehaviour {
 	public Vector3 offset;
 
 	private Vector3 targetPos;
+	private float startYpos;
 
 	// Use this for initialization
 	void Start () {
 		targetPos = transform.position;
+		startYpos = transform.position.y;
 	}
 
 	// Update is called once per frame
@@ -24,6 +26,8 @@ public class Simple2DCameraFollow : MonoBehaviour {
 			Vector3 targetDirection = (target.transform.position - posNoZ);
 			float interpVelocity = targetDirection.magnitude * speed;
 			targetPos = (transform.position) + (targetDirection.normalized * interpVelocity * Time.deltaTime); 
+			targetPos.y = startYpos;
+			targetPos.z = -1;
 			transform.position = Vector3.Lerp( transform.position, targetPos, 0.25f);
 
 		}

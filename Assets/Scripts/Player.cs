@@ -32,6 +32,8 @@ public class Player : MonoBehaviour {
     }
 
     private void Update() {
+        bool isShift = false;
+
         if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
             rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
         }
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour {
         {
             Physics2D.gravity = new Vector2(0, -downGravity);
         }
+
   
     }
 

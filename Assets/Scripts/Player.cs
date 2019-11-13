@@ -20,6 +20,7 @@ public class Player : MonoBehaviour {
 
     [SerializeField] private LayerMask platformsLayerMask;
     public GameObject weapon1;
+    public GameObject weapon1bullet;
     public GameObject weapon2;
     public GameObject weapon3;
     private Rigidbody2D rb;
@@ -37,6 +38,8 @@ public class Player : MonoBehaviour {
         weapon1.SetActive(true);
         weapon2.SetActive(false);
         weapon3.SetActive(false);
+
+        activeWeapon = 1;
     }
 
     private void Update() {
@@ -99,7 +102,13 @@ public class Player : MonoBehaviour {
         switch(activeWeapon)
         {
             case 1:
-                /// weapon 1 code here
+                if (Input.GetKeyDown("k"))
+                {
+                    GameObject ball = Instantiate(weapon1bullet, transform.position, Quaternion.identity);
+                    ball.GetComponent<Rigidbody2D>().velocity = new Vector2(300f, 0f);
+                    Destroy(ball, 2f);
+                    
+                }
                 break;
             
             case 2:

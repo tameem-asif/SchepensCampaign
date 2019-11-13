@@ -19,8 +19,12 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     [SerializeField] private LayerMask platformsLayerMask;
+    public GameObject weapon1;
+    public GameObject weapon2;
+    public GameObject weapon3;
     private Rigidbody2D rb;
     private BoxCollider2D boxCollider2d;
+    private int activeWeapon = 0;
     public float jumpVelocity = 100f;
     public float moveSpeed = 40f;
     public float upGravity = 12f;
@@ -29,6 +33,10 @@ public class Player : MonoBehaviour {
     private void Awake() {
         rb = transform.GetComponent<Rigidbody2D>();
         boxCollider2d = transform.GetComponent<BoxCollider2D>();
+
+        weapon1.SetActive(true);
+        weapon2.SetActive(false);
+        weapon3.SetActive(false);
     }
 
     private void Update() {
@@ -49,6 +57,59 @@ public class Player : MonoBehaviour {
         else
         {
             Physics2D.gravity = new Vector2(0, -downGravity);
+        }
+
+        if (Input.GetKeyDown("p"))
+        {
+            GameManager.moveToNextLevel();
+        }
+
+
+    
+
+
+        //swaps weapons
+        if (Input.GetKeyDown("1"))
+        {
+            weapon1.SetActive(true);
+            weapon2.SetActive(false);
+            weapon3.SetActive(false);
+
+            activeWeapon = 1;
+        }
+        else if (Input.GetKeyDown("2"))
+        {
+            weapon1.SetActive(false);
+            weapon2.SetActive(true);
+            weapon3.SetActive(false);
+
+            activeWeapon = 2;
+        }
+        else if (Input.GetKeyDown("3"))
+        {
+            weapon1.SetActive(false);
+            weapon2.SetActive(false);
+            weapon3.SetActive(true);
+
+            activeWeapon = 3;
+        }
+
+
+        //weapon shooting code
+        switch(activeWeapon)
+        {
+            case 1:
+                /// weapon 1 code here
+                break;
+            
+            case 2:
+                /// weapon 2 code here
+                break;
+
+            case 3:
+                /// weapon 3 code here
+                break;
+            
         }
   
     }

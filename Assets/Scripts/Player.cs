@@ -53,6 +53,11 @@ public class Player : MonoBehaviour {
             Physics2D.gravity = new Vector2(0, -downGravity);
         }
 
+        if (Input.GetKeyDown("p"))
+        {
+            GameManager.moveToNextLevel();
+        }
+
   
     }
 

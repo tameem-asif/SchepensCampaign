@@ -27,10 +27,7 @@ public class spawningEnemies: MonoBehaviour {
 	// Update is called once per frame
 	void FixedUpdate ()
 	{
-		if(!rightPos)
-		{
-			//FIX
-		}
+		
 	}
 
 	private void moveEnemyToRight(float f)

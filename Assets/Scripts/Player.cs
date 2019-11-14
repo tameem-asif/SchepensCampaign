@@ -22,9 +22,10 @@ public class Player : MonoBehaviour {
     public GameObject weapon1;
     public GameObject weapon1bullet;
     public GameObject weapon2;
+    public GameObject weapon2bullet;
     public GameObject weapon3;
     private Rigidbody2D rb;
-    private BoxCollider2D boxCollider2d;
+    private PolygonCollider2D boxCollider2d;
     private int activeWeapon = 0;
     public float jumpVelocity = 100f;
     public float moveSpeed = 40f;
@@ -33,7 +34,7 @@ public class Player : MonoBehaviour {
 
     private void Awake() {
         rb = transform.GetComponent<Rigidbody2D>();
-        boxCollider2d = transform.GetComponent<BoxCollider2D>();
+        boxCollider2d = transform.GetComponent<PolygonCollider2D>();
 
         weapon1.SetActive(true);
         weapon2.SetActive(false);
@@ -43,14 +44,12 @@ public class Player : MonoBehaviour {
     }
 
     private void Update() {
-        if (IsGrounded() && Input.GetKeyDown(KeyCode.Space)) {
-            rb.velocity = new Vector2(rb.velocity.x, jumpVelocity);
+        if (IsGrounded() && Input.GetKeyDown("w")) {
+            rb.velocity = new Vector2(0f, jumpVelocity);
         }
         
-        if (rb.velocity.y == 0)
-        {
-            HandleMovement_FullMidAirControl();
-        }
+        HandleMovement_FullMidAirControl();
+        
         
 
         if(rb.velocity.y > 0)
@@ -104,17 +103,20 @@ public class Player : MonoBehaviour {
             case 1:
                 if (Input.GetKeyDown("k"))
                 {
-                    GameObject ball = Instantiate(weapon1bullet, transform.position, Quaternion.identity);
+                    GameObject ball = Instantiate(weapon1bullet, weapon1.transform.position, Quaternion.identity);
                     ball.GetComponent<Rigidbody2D>().velocity = new Vector2(300f, 0f);
                     Destroy(ball, 2f);
-                    
                 }
                 break;
             
             case 2:
-                /// weapon 2 code here
+                if (Input.GetKeyDown("k"))
+                {
+                    GameObject ball2 = Instantiate(weapon2bullet, weapon1.transform.position, Quaternion.identity);
+                    ball2.GetComponent<Rigidbody2D>().AddForce(new Vector2(20000f, 20000f), ForceMode2D.Force);
+                    Destroy(ball2, 2.5f);
+                }
                 break;
-
             case 3:
                 /// weapon 3 code here
                 break;
@@ -129,10 +131,10 @@ public class Player : MonoBehaviour {
     }
     
     private void HandleMovement_FullMidAirControl() {
-        if (Input.GetKey(KeyCode.LeftArrow)) {
+        if (Input.GetKey("a")) {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
         } else {
-            if (Input.GetKey(KeyCode.RightArrow)) {
+            if (Input.GetKey("d")) {
                 rb.velocity = new Vector2(+moveSpeed, rb.velocity.y);
             } else {
                 // No keys pressed

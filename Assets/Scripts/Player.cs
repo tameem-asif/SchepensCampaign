@@ -31,6 +31,7 @@ public class Player : MonoBehaviour {
     public float moveSpeed = 40f;
     public float upGravity = 12f;
     public float downGravity = 18f;
+    private bool flipped = false;
 
     private void Awake() {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -104,7 +105,15 @@ public class Player : MonoBehaviour {
                 if (Input.GetKeyDown("k"))
                 {
                     GameObject ball = Instantiate(weapon1bullet, weapon1.transform.position, Quaternion.identity);
-                    ball.GetComponent<Rigidbody2D>().velocity = new Vector2(300f, 0f);
+                    if (flipped)
+                    {
+                        ball.GetComponent<Rigidbody2D>().velocity = new Vector2(-300f, 0f);
+                    }
+                    else
+                    {
+                        ball.GetComponent<Rigidbody2D>().velocity = new Vector2(300f, 0f);
+                    }
+                    
                     Destroy(ball, 2f);
                 }
                 break;
@@ -113,7 +122,14 @@ public class Player : MonoBehaviour {
                 if (Input.GetKeyDown("k"))
                 {
                     GameObject ball2 = Instantiate(weapon2bullet, weapon1.transform.position, Quaternion.identity);
-                    ball2.GetComponent<Rigidbody2D>().AddForce(new Vector2(20000f, 20000f), ForceMode2D.Force);
+                    if (flipped)
+                    {
+                        ball2.GetComponent<Rigidbody2D>().AddForce(new Vector2(-20000f, 20000f), ForceMode2D.Force);
+                    }
+                    else
+                    {
+                        ball2.GetComponent<Rigidbody2D>().AddForce(new Vector2(20000f, 20000f), ForceMode2D.Force);
+                    }
                     Destroy(ball2, 2.5f);
                 }
                 break;
@@ -133,9 +149,13 @@ public class Player : MonoBehaviour {
     private void HandleMovement_FullMidAirControl() {
         if (Input.GetKey("a")) {
             rb.velocity = new Vector2(-moveSpeed, rb.velocity.y);
+            transform.localScale = new Vector3(-53.81509f, 60.55625f, 1f);
+            flipped = true;
         } else {
             if (Input.GetKey("d")) {
                 rb.velocity = new Vector2(+moveSpeed, rb.velocity.y);
+                transform.localScale = new Vector3(53.81509f, 60.55625f, 1f);
+                flipped = false;
             } else {
                 // No keys pressed
                 rb.velocity = new Vector2(0, rb.velocity.y);

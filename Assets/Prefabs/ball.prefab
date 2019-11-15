@@ -21,9 +21,11 @@ GameObject:
   - component: {fileID: 4635922141881110}
   - component: {fileID: 212880081298991282}
   - component: {fileID: 50012667697548218}
+  - component: {fileID: 58569066053837856}
+  - component: {fileID: 114833232295114642}
   m_Layer: 0
   m_Name: ball
-  m_TagString: Untagged
+  m_TagString: bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,6 +63,32 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!58 &58569066053837856
+CircleCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070873216802910}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.49999997
+--- !u!114 &114833232295114642
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1070873216802910}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1743e45b9d2a24ed0b19eaa69e029d2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212880081298991282
 SpriteRenderer:
   m_ObjectHideFlags: 1

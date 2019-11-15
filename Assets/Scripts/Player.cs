@@ -1,23 +1,16 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System;
+﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 /*
  * Simple Jump
  * */
 public class Player : MonoBehaviour {
 
+    public Text pointsText;
+    public Text livesText;
     [SerializeField] private LayerMask platformsLayerMask;
     public GameObject weapon1;
     public GameObject weapon1bullet;
@@ -138,7 +131,15 @@ public class Player : MonoBehaviour {
                 break;
             
         }
-  
+
+        pointsText.text = "Points: " + GameManager.points.ToString(); 
+        livesText.text = "Lives: " + GameManager.lives.ToString();
+
+        if(GameManager.lives <= 0)
+        {
+            SceneManager.LoadScene("EndMenu");
+        }
+
     }
 
     private bool IsGrounded() {

@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 {
     private static int currentLevel = 0;
+    public static float lives = 3;
     
     public static void moveToNextLevel ()
     {

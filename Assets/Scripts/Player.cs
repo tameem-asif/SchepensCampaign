@@ -25,6 +25,7 @@ public class Player : MonoBehaviour {
     public float upGravity = 12f;
     public float downGravity = 18f;
     private bool flipped = false;
+    public static float numBugs;
 
     private void Awake() {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -35,6 +36,11 @@ public class Player : MonoBehaviour {
         weapon3.SetActive(false);
 
         activeWeapon = 1;
+    }
+
+    private void Start()
+    {
+        numBugs = GameObject.FindGameObjectsWithTag("bug").Length;
     }
 
     private void Update() {
@@ -136,6 +142,11 @@ public class Player : MonoBehaviour {
         livesText.text = "Lives: " + GameManager.lives.ToString();
 
         if(GameManager.lives <= 0)
+        {
+            SceneManager.LoadScene("EndMenu");
+        }
+
+        if(numBugs == 0)
         {
             SceneManager.LoadScene("EndMenu");
         }

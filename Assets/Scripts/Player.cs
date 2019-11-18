@@ -1,23 +1,17 @@
-﻿/* 
-    ------------------- Code Monkey -------------------
-
-    Thank you for downloading this package
-    I hope you find it useful in your projects
-    If you have any questions let me know
-    Cheers!
-
-               unitycodemonkey.com
-    --------------------------------------------------
- */
-
-using System;
+﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
 
 /*
  * Simple Jump
  * */
 public class Player : MonoBehaviour {
 
+    public Text pointsText;
+    public Text livesText;
+    public Text bugsText;
     [SerializeField] private LayerMask platformsLayerMask;
     public GameObject weapon1;
     public GameObject weapon1bullet;
@@ -32,6 +26,7 @@ public class Player : MonoBehaviour {
     public float upGravity = 12f;
     public float downGravity = 18f;
     private bool flipped = false;
+    public static float numBugs;
 
     private void Awake() {
         rb = transform.GetComponent<Rigidbody2D>();
@@ -42,6 +37,11 @@ public class Player : MonoBehaviour {
         weapon3.SetActive(false);
 
         activeWeapon = 1;
+    }
+
+    private void Start()
+    {
+        numBugs = GameObject.FindGameObjectsWithTag("bug").Length;
     }
 
     private void Update() {
@@ -62,10 +62,10 @@ public class Player : MonoBehaviour {
             Physics2D.gravity = new Vector2(0, -downGravity);
         }
 
-        if (Input.GetKeyDown("p"))
+        /*if (Input.GetKeyDown("p"))
         {
             GameManager.moveToNextLevel();
-        }
+        }*/
 
 
     
@@ -95,6 +95,11 @@ public class Player : MonoBehaviour {
             weapon3.SetActive(true);
 
             activeWeapon = 3;
+        }
+
+        if(Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
         }
 
 
@@ -138,8 +143,23 @@ public class Player : MonoBehaviour {
                 break;
             
         }
-  
+
+        pointsText.text = "Points: " + GameManager.points.ToString(); 
+        livesText.text = "Lives: " + GameManager.lives.ToString();
+        bugsText.text = "Bugs Left: "+numBugs.ToString();
+
+        if(GameManager.lives <= 0)
+        {
+            SceneManager.LoadScene("EndMenu");
+        }
+
+        if(numBugs <= 0)
+        {
+            SceneManager.LoadScene("WinMenu");
+        }
+
     }
+
 
     private bool IsGrounded() {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 1f, platformsLayerMask);

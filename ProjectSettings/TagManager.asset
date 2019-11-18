@@ -6,6 +6,9 @@ TagManager:
   tags:
   - bullet
   - obstacle
+  - bullet2
+  - foot
+  - bug
   layers:
   - Default
   - TransparentFX

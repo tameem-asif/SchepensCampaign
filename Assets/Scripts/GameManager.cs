@@ -6,7 +6,9 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour 
 {
     private static int currentLevel = 0;
-    public static float lives = 3;
+    public static float lives = 5f;
+    public static float points = 0f;
+
     
     public static void moveToNextLevel ()
     {
@@ -31,15 +33,27 @@ public class GameManager : MonoBehaviour
 
         currentLevel++;
     }
-    
-    
-    
-    
+
+    public static void addPoints (int number)
+    {
+        points += number;
+    }
+
+    public static void decreaseLive()
+    {
+        lives--;
+    }
     //this is for the button in the start menu
     public void loadGame ()
     {
         SceneManager.LoadScene("Level1");
         currentLevel = 1;
+        resetValues();
+    }
+
+    public void getInstructions()
+    {
+        SceneManager.LoadScene("Instructions");
     }
 
     //this is for the button in the end menu to return to start menu
@@ -54,6 +68,13 @@ public class GameManager : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public static void resetValues()
+    {
+        lives = 5f;
+        points = 0f;
+    }
+
 
     
 }

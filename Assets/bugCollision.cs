@@ -11,6 +11,31 @@ public class bugCollision : MonoBehaviour {
 		{
 			Destroy(col.gameObject);
 			Destroy(gameObject);
+			GameManager.addPoints(75);
+			Player.numBugs --;
+		}
+
+		if (col.gameObject.tag == "bullet2")
+		{
+			Destroy(col.gameObject);
+			Destroy(gameObject);
+			GameManager.addPoints(150);
+			Player.numBugs --;
+		}
+
+		if(col.gameObject.tag == "foot")
+		{
+			Debug.Log("I am trying to kill it");
+			Destroy(gameObject);
+			GameManager.addPoints(50);
+			Player.numBugs --;
+		}
+
+		if(col.gameObject.tag == "Player")
+		{
+			Destroy(gameObject);
+			GameManager.decreaseLive();
+			Player.numBugs --;
 		}
 	}
 }

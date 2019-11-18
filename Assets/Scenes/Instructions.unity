@@ -145,7 +145,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 15}
+  m_AnchoredPosition: {x: 0, y: 54}
   m_SizeDelta: {x: 554.6, y: 65}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &54853625
@@ -180,11 +180,16 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: 'Looks like you didn''t help Mr. Schepens enough.
+  m_Text: 'You are trying to help Mr. Schepens kill all the Unity bugs!
 
-    Remember, line by line and character by character
+    Use WASD to move (W to jump) and K to shoot. You can switch between two weapons,
+    a normal cannon and a parabolic cannon using 1 and 2 respectively.
 
-    Care to restart??
+
+    Killing a bug with the parabolic cannon will yield more points.
+
+
+    Good Luck with the Unity Bugs!
 
 '
 --- !u!222 &54853626
@@ -261,7 +266,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Restart Game
+  m_Text: Start Game!
 --- !u!222 &262779324
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -294,10 +299,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 329968216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 234559340202840919242c91fcf40301, type: 3}
+  m_Script: {fileID: 11500000, guid: 6d62694418a1643cda512afcad7beddb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalPoints: {fileID: 346713408}
+  finalPoints: {fileID: 0}
 --- !u!212 &329968218
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -357,81 +362,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &346713407
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 346713410}
-  - component: {fileID: 346713409}
-  - component: {fileID: 346713408}
-  m_Layer: 5
-  m_Name: ptsText
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &346713408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 346713407}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 0.8773585, g: 0.21106264, b: 0.21106264, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 20
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 2
-    m_MaxSize: 40
-    m_Alignment: 4
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 1
-    m_LineSpacing: 1
-  m_Text: new text
---- !u!222 &346713409
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 346713407}
-  m_CullTransparentMesh: 0
---- !u!224 &346713410
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 346713407}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 999808984}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -48}
-  m_SizeDelta: {x: 554.6, y: 65}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &955449375
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,7 +439,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1197041418}
-        m_MethodName: restartGame
+        m_MethodName: loadGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -642,7 +572,6 @@ RectTransform:
   m_Children:
   - {fileID: 955449376}
   - {fileID: 54853624}
-  - {fileID: 346713410}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

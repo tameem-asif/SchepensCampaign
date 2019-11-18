@@ -189,6 +189,9 @@ MonoBehaviour:
     Killing a bug with the parabolic cannon will yield more points.
 
 
+    Hit Escape at any time to exit the game!
+
+
     Good Luck with the Unity Bugs!
 
 '
@@ -299,10 +302,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 329968216}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d62694418a1643cda512afcad7beddb, type: 3}
+  m_Script: {fileID: 11500000, guid: 120c2ea3b247b4fc9a8d4eebf1ba1eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  finalPoints: {fileID: 0}
 --- !u!212 &329968218
 SpriteRenderer:
   m_ObjectHideFlags: 0

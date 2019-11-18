@@ -51,6 +51,11 @@ public class GameManager : MonoBehaviour
         resetValues();
     }
 
+    public void getInstructions()
+    {
+        SceneManager.LoadScene("Instructions");
+    }
+
     //this is for the button in the end menu to return to start menu
     public void restartGame ()
     {

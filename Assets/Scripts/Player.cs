@@ -11,6 +11,7 @@ public class Player : MonoBehaviour {
 
     public Text pointsText;
     public Text livesText;
+    public Text bugsText;
     [SerializeField] private LayerMask platformsLayerMask;
     public GameObject weapon1;
     public GameObject weapon1bullet;
@@ -61,10 +62,10 @@ public class Player : MonoBehaviour {
             Physics2D.gravity = new Vector2(0, -downGravity);
         }
 
-        if (Input.GetKeyDown("p"))
+        /*if (Input.GetKeyDown("p"))
         {
             GameManager.moveToNextLevel();
-        }
+        }*/
 
 
     
@@ -94,6 +95,11 @@ public class Player : MonoBehaviour {
             weapon3.SetActive(true);
 
             activeWeapon = 3;
+        }
+
+        if(Input.GetKeyDown("escape"))
+        {
+            Application.Quit();
         }
 
 
@@ -140,18 +146,20 @@ public class Player : MonoBehaviour {
 
         pointsText.text = "Points: " + GameManager.points.ToString(); 
         livesText.text = "Lives: " + GameManager.lives.ToString();
+        bugsText.text = "Bugs Left: "+numBugs.ToString();
 
         if(GameManager.lives <= 0)
         {
             SceneManager.LoadScene("EndMenu");
         }
 
-        if(numBugs == 0)
+        if(numBugs <= 0)
         {
-            SceneManager.LoadScene("EndMenu");
+            SceneManager.LoadScene("WinMenu");
         }
 
     }
+
 
     private bool IsGrounded() {
         RaycastHit2D raycastHit2d = Physics2D.BoxCast(boxCollider2d.bounds.center, boxCollider2d.bounds.size, 0f, Vector2.down, 1f, platformsLayerMask);
